@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HTB:LinuxPrivEsc on Abhi Venkatesh</title>
-    <link>/series/htblinuxprivesc/</link>
+    <link>https://defstryker.dev/series/htblinuxprivesc/</link>
     <description>Recent content in HTB:LinuxPrivEsc on Abhi Venkatesh</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate><atom:link href="/series/htblinuxprivesc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate><atom:link href="https://defstryker.dev/series/htblinuxprivesc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Swagshop</title>
-      <link>/posts/202011/swagshop/</link>
+      <link>https://defstryker.dev/posts/202011/swagshop/</link>
       <pubDate>Sun, 15 Nov 2020 20:38:35 +0530</pubDate>
       
-      <guid>/posts/202011/swagshop/</guid>
+      <guid>https://defstryker.dev/posts/202011/swagshop/</guid>
       <description>Mikkou</description>
     </item>
     
