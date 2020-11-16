@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abhi Venkatesh</title>
+    <link>defstryker.github.io/</link>
+    <description>Recent content on Abhi Venkatesh</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate><atom:link href="defstryker.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Swagshop</title>
+      <link>defstryker.github.io/posts/202011/swagshop/</link>
+      <pubDate>Sun, 15 Nov 2020 20:38:35 +0530</pubDate>
+      
+      <guid>defstryker.github.io/posts/202011/swagshop/</guid>
+      <description>Mikkou</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>defstryker.github.io/about/</link>
+      <pubDate>Sun, 15 Nov 2020 20:31:40 +0530</pubDate>
+      
+      <guid>defstryker.github.io/about/</guid>
+      <description>Hi! I am Abhi a software engineer/SOC Analyst.</description>
+    </item>
+    
+  </channel>
+</rss>
