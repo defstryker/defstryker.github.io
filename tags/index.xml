@@ -5,6 +5,16 @@
     <link>https://defstryker.dev/tags/</link>
     <description>Recent content in Tags on Abhi Venkatesh</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://defstryker.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate><atom:link href="https://defstryker.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTB:LinuxPrivEsc</title>
+      <link>https://defstryker.dev/tags/htblinuxprivesc/</link>
+      <pubDate>Sun, 15 Nov 2020 20:38:35 +0530</pubDate>
+      
+      <guid>https://defstryker.dev/tags/htblinuxprivesc/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
