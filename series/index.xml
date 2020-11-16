@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on Abhi Venkatesh</title>
-    <link>defstryker.dev/series/</link>
+    <link>/series/</link>
     <description>Recent content in Series on Abhi Venkatesh</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate><atom:link href="defstryker.dev/series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate><atom:link href="/series/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HTB:LinuxPrivEsc</title>
-      <link>defstryker.dev/series/htblinuxprivesc/</link>
+      <link>/series/htblinuxprivesc/</link>
       <pubDate>Sun, 15 Nov 2020 20:38:35 +0530</pubDate>
       
-      <guid>defstryker.dev/series/htblinuxprivesc/</guid>
+      <guid>/series/htblinuxprivesc/</guid>
       <description></description>
     </item>
     

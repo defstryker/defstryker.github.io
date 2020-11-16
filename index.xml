@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Abhi Venkatesh</title>
-    <link>defstryker.dev/</link>
+    <link>/</link>
     <description>Recent content on Abhi Venkatesh</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate><atom:link href="defstryker.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Swagshop</title>
-      <link>defstryker.dev/posts/202011/swagshop/</link>
+      <link>/posts/202011/swagshop/</link>
       <pubDate>Sun, 15 Nov 2020 20:38:35 +0530</pubDate>
       
-      <guid>defstryker.dev/posts/202011/swagshop/</guid>
+      <guid>/posts/202011/swagshop/</guid>
       <description>Mikkou</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>defstryker.dev/about/</link>
+      <link>/about/</link>
       <pubDate>Sun, 15 Nov 2020 20:31:40 +0530</pubDate>
       
-      <guid>defstryker.dev/about/</guid>
+      <guid>/about/</guid>
       <description>Hi! I am Abhi a software engineer/SOC Analyst.</description>
     </item>
     
