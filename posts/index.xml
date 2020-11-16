@@ -5,7 +5,19 @@
         <description>Recent content in Posts on Abhi Venkatesh</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
+        <lastBuildDate>Sun, 15 Nov 2020 20:38:35 +0530</lastBuildDate>
         <atom:link href="defstryker.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Swagshop</title>
+            <link>defstryker.github.io/posts/202011/swagshop/</link>
+            <pubDate>Sun, 15 Nov 2020 20:38:35 +0530</pubDate>
+            
+            <guid>defstryker.github.io/posts/202011/swagshop/</guid>
+            <description>Mikkou</description>
+            <content type="html"><![CDATA[<p>Mikkou</p>
+]]></content>
+        </item>
         
     </channel>
 </rss>
